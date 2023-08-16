@@ -1,0 +1,19 @@
+//
+//  TheCardGameApp.swift
+//  TheCardGame
+//
+//  Created by David Onica on 04.08.2023.
+//
+
+import SwiftUI
+
+@main
+struct TheCardGameApp: App {
+    private let game = EmojyMemoryGame()
+    
+    var body: some Scene {
+        WindowGroup {
+            EmojiMemoryGameView(game: game) 
+        }
+    }
+}

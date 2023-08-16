@@ -1,0 +1,44 @@
+//
+//  EmojiMemoryGame.swift
+//  TheCardGame
+//
+//  Created by David Onica on 05.08.2023.
+//
+
+import Foundation
+class EmojyMemoryGame: ObservableObject{
+    typealias Card =  MemoryGame<String>.Card
+    private static let emojis =  ["🚗",
+                          "🚕",
+                          "🚆",
+                          "🚁",
+                          "🚢",
+                          "🛶",
+                          "🛵",
+                          "🚤",
+                          "🚀",
+                          "🛸"]
+   private static func createMemoryGame() -> MemoryGame <String>{
+        MemoryGame<String>(numberofpairsofcards: 5){ 
+            pairindex in emojis[pairindex]
+        }
+    }
+    
+   @Published private var model = createMemoryGame()
+    var cards: Array  <Card>{
+    model .cards
+    }
+    //Mark -Intent(s)
+    func choose(_ card: Card) {
+        objectWillChange.send()
+        model.choose(card)
+    }
+    func Shuffle(){
+        model.shuffle()
+    }
+    func restart(){
+        model = EmojyMemoryGame.createMemoryGame()  
+    }
+}
+
+
